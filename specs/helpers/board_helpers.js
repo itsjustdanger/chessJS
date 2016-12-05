@@ -86,7 +86,19 @@ var Helpers = {
     var positions = (color === 'white') ? [[0, 3]] : [[7, 3]];
 
     return this.checkPieces(board, 'Queen', color, positions);
-  }
+  },
+
+
+  /**
+   * Make sure the kings are in the correct locations for given color.
+   * white ~> [0, 4]
+   * black ~> [7, 4]
+   */
+   checkKing: function(board, color) {
+     var positions = (color === 'white') ? [[0, 4]] : [[7, 4]];
+
+     return this.checkPieces(board, 'King', color, positions);
+   }
 };
 
 module.exports = Helpers;

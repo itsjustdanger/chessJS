@@ -5,6 +5,7 @@ var Rook = require('./Rook');
 var Knight = require('./Knight');
 var Bishop = require('./Bishop');
 var Queen = require('./Queen');
+var King = require('./King');
 
 
 module.exports = class Board {
@@ -56,12 +57,18 @@ module.exports = class Board {
       this.ranks[7][3] = new Queen({rank: 7, file: 3}, 'black');
     };
 
+    this.setKings = () => {
+      this.ranks[0][4] = new King({rank: 0, file: 4}, 'white');
+      this.ranks[7][4] = new King({rank: 7, file: 4}, 'black');
+    }
+
     this.setPieces = () => {
       this.setPawns();
       this.setRooks();
       this.setKnights();
       this.setBishops();
       this.setQueens();
+      this.setKings();
     }
 
     this.setPieces();
