@@ -1,7 +1,7 @@
 
 var test = require('tape');
 var Helpers = require('../helpers/board_helpers.js');
-var Board = require('../../src/Board.js');
+var Board = require('../../src/js/Board.js');
 
 
 test('Board populates 8x8 grid on creation', (t) => {
