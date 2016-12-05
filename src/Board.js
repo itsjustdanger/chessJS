@@ -3,7 +3,7 @@ var NUM_FILES = 8;
 var Pawn = require('./Pawn');
 var Rook = require('./Rook');
 var Knight = require('./Knight');
-
+var Bishop = require('./Bishop');
 
 module.exports = class Board {
   constructor() {
@@ -40,12 +40,20 @@ module.exports = class Board {
       this.ranks[0][6] = new Knight({rank: 0, file: 6}, 'white');
       this.ranks[7][1] = new Knight({rank: 7, file: 1}, 'black');
       this.ranks[7][6] = new Knight({rank: 7, file: 6}, 'black');
-    }
+    };
+
+    this.setBishops = () => {
+      this.ranks[0][2] = new Bishop({rank: 0, file: 2}, 'white');
+      this.ranks[0][5] = new Bishop({rank: 0, file: 5}, 'white');
+      this.ranks[7][2] = new Bishop({rank: 7, file: 2}, 'black');
+      this.ranks[7][5] = new Bishop({rank: 7, file: 5}, 'black');
+    };
 
     this.setPieces = () => {
       this.setPawns();
       this.setRooks();
       this.setKnights();
+      this.setBishops();
     }
 
     this.setPieces();
