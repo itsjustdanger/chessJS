@@ -40,6 +40,7 @@ var Helpers = {
     return true;
   },
 
+
   /**
    * Make sure the rooks are in the correct locations for given color.
    * white ~> [0, 0], [0, 7]
@@ -50,6 +51,7 @@ var Helpers = {
 
     return this.checkPieces(board, 'Rook', color, positions);
   },
+
 
   /**
    * Make sure the knights are in the correct locations for given color.
@@ -62,6 +64,7 @@ var Helpers = {
     return this.checkPieces(board, 'Knight', color, positions);
   },
 
+
   /**
    * Make sure the bishops are in the correct locations for given color.
    * white ~> [0, 2], [0, 5]
@@ -71,6 +74,18 @@ var Helpers = {
     var positions = (color === 'white') ? [[0, 2], [0, 5]] : [[7, 2], [7, 5]];
 
     return this.checkPieces(board, 'Bishop', color, positions);
+  },
+
+
+  /**
+  * Make sure the queens are in the correct locations for a given color.
+  * white ~> [0, 3]
+  * black ~> [7, 3]
+  */
+  checkQueen: function(board, color) {
+    var positions = (color === 'white') ? [[0, 3]] : [[7, 3]];
+
+    return this.checkPieces(board, 'Queen', color, positions);
   }
 };
 

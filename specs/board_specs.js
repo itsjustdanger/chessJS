@@ -48,3 +48,12 @@ test('Board sets up bishops in the correct positions', (t) => {
   t.ok(Helpers.checkBishops(board, 'white'), 'white bishops are set up correctly');
   t.ok(Helpers.checkBishops(board, 'black'), 'black bishops are set up correctly');
 });
+
+test('board sets up queens in the correct positions', (t) => {
+  var board = new Board();
+
+  t.plan(2);
+
+  t.ok(Helpers.checkQueen(board, 'white'), 'white queen is set up correctly');
+  t.ok(Helpers.checkQueen(board, 'black'), 'black queen is set up correctly');
+});
