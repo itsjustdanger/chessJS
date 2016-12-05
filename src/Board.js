@@ -1,6 +1,7 @@
 "use strict";
 var NUM_FILES = 8;
 var Pawn = require('./Pawn');
+var Rook = require('./Rook');
 
 module.exports = class Board {
   constructor() {
@@ -25,7 +26,19 @@ module.exports = class Board {
       }
     }
 
-    this.setPawns();
+    this.setRooks = () => {
+      this.ranks[0][0] = new Rook({rank: 0, file: 0}, 'white');
+      this.ranks[0][7] = new Rook({rank: 0, file: 7}, 'white');
+      this.ranks[7][0] = new Rook({rank: 7, file: 0}, 'black');
+      this.ranks[7][7] = new Rook({rank: 7, file: 7}, 'black');
+    };
+
+    this.setPieces = () => {
+      this.setPawns();
+      this.setRooks();
+    }
+
+    this.setPieces();
   }
 
 }
