@@ -1,11 +1,11 @@
 "use strict";
 var NUM_FILES = 8;
-var Pawn = require('./Pawn');
-var Rook = require('./Rook');
-var Knight = require('./Knight');
-var Bishop = require('./Bishop');
-var Queen = require('./Queen');
-var King = require('./King');
+var Pawn = require('./pieces/Pawn');
+var Rook = require('./pieces/Rook');
+var Knight = require('./pieces/Knight');
+var Bishop = require('./pieces/Bishop');
+var Queen = require('./pieces/Queen');
+var King = require('./pieces/King');
 
 
 module.exports = class Board {
@@ -73,5 +73,4 @@ module.exports = class Board {
 
     this.setPieces();
   }
-
 };
