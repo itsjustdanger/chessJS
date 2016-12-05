@@ -1,10 +1,19 @@
 
 var Helpers = {
 
+  /**
+   * Generalized checkPiece function that checks an indiviaul square for the
+   * presence of an expected piece/color.
+   */
   checkPiece: function(obj, piece, color) {
     return (obj && obj.constructor.name === piece && obj.color === color);
   },
 
+
+  /**
+   * Generalized checkPieces function that checks for the expected piece and color
+   * within the given positions. Returns boolean based on expectations.
+   */
   checkPieces: function(board, piece, color, positions) {
     var rank, file, obj, i;
 
@@ -20,6 +29,7 @@ var Helpers = {
 
     return true;
   },
+
 
   /**
    * Make sure that pawns fill up ranks 2 and 6, and that they are the correct color.
