@@ -20,14 +20,14 @@ test('Board sets up white pawns on each file in rank 2', (t) => {
 
   t.plan(1);
   t.ok(Helpers.checkPawns(board, 'white'));
-})
+});
 
 test('Board sets up black pawns on each file in rank 6', (t) => {
   var board = new Board();
 
   t.plan(1);
   t.ok(Helpers.checkPawns(board, 'black'));
-})
+});
 
 test('Board sets up rooks in correct positions', (t) => {
   var board = new Board();
@@ -35,4 +35,13 @@ test('Board sets up rooks in correct positions', (t) => {
   t.plan(2);
   t.ok(Helpers.checkRooks(board, 'white'), 'white rooks are in the correct place');
   t.ok(Helpers.checkRooks(board, 'black'), 'black rooks are in the correct place');
-})
+});
+
+test('Board sets up knights in the correct positions', (t) => {
+  var board = new Board();
+
+  t.plan(2);
+
+  t.ok(Helpers.checkKnights(board, 'white'), 'white knights are in the correct place');
+  t.ok(Helpers.checkKnights(board, 'black'), 'black knights are in the correct place');
+});

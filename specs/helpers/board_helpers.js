@@ -25,7 +25,7 @@ var Helpers = {
   },
 
   /**
-   * Make sure the rooks are in the corners, and the colors are correct.
+   * Make sure the rooks are in the correct locations for given color.
    * white ~> [0, 0], [0, 7]
    * black ~> [7, 0], [7, 7]
    */
@@ -39,6 +39,26 @@ var Helpers = {
       piece = board.ranks[rank][files[i]];
 
       if (!this.checkPiece(piece, 'Rook', color)) {
+        return false;
+      }
+    }
+
+    return true;
+  },
+
+  /**
+   * Make sure the knights are in the correct locations for given color.
+   */
+  checkKnights: function(board, color) {
+    var rank = (color === 'white') ? 0 : 7;
+    var files = [1, 6];
+    var piece;
+    var i;
+
+    for (i = 0; i < 2; i++) {
+      piece = board.ranks[rank][files[i]];
+
+      if (!this.checkPiece(piece, 'Knight', color)) {
         return false;
       }
     }
