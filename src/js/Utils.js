@@ -34,5 +34,11 @@ var Utils = module.exports = {
 
   coordsToAlg: (coords) => {
     return FILE_MAP[coords.file] + (coords.rank + 1);
-  }
+  },
+
+  inBounds: (loc) => {
+    var pos = (typeof loc === 'string') ? Utils.algToCoords(loc) : loc;
+
+    return (pos.rank < 8 && pos.file < 8 && pos.rank >= 0 && pos.file >= 0);
+  },
 };

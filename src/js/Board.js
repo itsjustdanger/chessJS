@@ -45,6 +45,10 @@ module.exports = class Board {
         this.setPiece(algDest, piece);
         this.setPiece(algOrigin, null);
 
+        if (!piece.hasMoved) {
+          piece.hasMoved = true;
+        }
+
         return true;
       }
 
@@ -54,8 +58,14 @@ module.exports = class Board {
 
     this.getPiece = (alg) => {
       var pos = Utils.algToCoords(alg);
-      var piece = this.ranks[pos.rank][pos.file];
-      return piece;
+      var piece;
+
+      if (Utils.inBounds(pos)) {
+        piece = this.ranks[pos.rank][pos.file];
+        return piece;
+      }
+
+      return false;
     };
 
     this.setPiece = (algDest, piece) => {
