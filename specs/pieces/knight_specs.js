@@ -4,7 +4,7 @@ var Board = require('../../src/js/Board');
 test('Knights return array of possible legal moves', (t) => {
   var board = new Board();
   var whiteKnight = board.getPiece('b1');
-  var blackKnight = board.getPiece('b7');
+  var blackKnight = board.getPiece('b8');
 
   t.plan(2);
 

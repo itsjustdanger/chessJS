@@ -39,7 +39,7 @@ module.exports = class Pawn extends Piece {
      */
     this.moves = () => {
 
-      var newRank, newFile, rank, dest;
+      var newFile, rank, dest;
       var boundaryRank = (this.color === 'white') ? 7 : 0;
       var moveList = [];
 
@@ -50,7 +50,7 @@ module.exports = class Pawn extends Piece {
         dest = Utils.coordsToAlg({rank: rank, file: this.pos.file});
 
         if (board.isEmpty(dest)) {
-          moveList.push();
+          moveList.push(dest);
         }
       }
 
@@ -59,7 +59,7 @@ module.exports = class Pawn extends Piece {
         dest = Utils.coordsToAlg({rank: rank, file: this.pos.file})
 
         if (board.isEmpty(dest)) {
-          moveList.push();          
+          moveList.push(dest);
         }
       }
 

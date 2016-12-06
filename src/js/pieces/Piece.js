@@ -25,5 +25,11 @@ module.exports = class Piece {
     };
 
     this.moves = () => {};
+
+    this.occupiedByFriendly = (alg) => {
+      var piece = this.board.getPiece(alg);
+      console.log(alg + ": " + (piece && (piece.color === this.color)));
+      return (piece && (piece.color === this.color));
+    }
   }
 };
