@@ -36,6 +36,20 @@ test('Possible pawn moves do not include out of bounds ranks', (t) => {
   t.deepEqual(blackPawn.moves(), []);
 });
 
+test('Possible pawn moves do not include obstructed squares', (t) => {
+  var board = new Board();
+  var whitePawn = board.getPiece('e2');
+  var blackPawn = board.getPiece('e7');
+
+  board.move('e2', 'e4');
+  board.move('e7', 'e5');
+
+  t.plan(2);
+
+  t.ok(!whitePawn.moves().includes('e5'), 'white pawn cannot move to e5');
+  t.ok(!blackPawn.moves().includes('e4'), 'black pawn cannot move to e4');
+});
+
 test('Possible pawn moves include diagonal captures', (t) => {
   var board = new Board();
   var whitePawn = board.getPiece('e2');

@@ -68,6 +68,12 @@ module.exports = class Board {
       return false;
     };
 
+
+    this.isEmpty = (alg) => {
+      return (!this.getPiece(alg));
+    };
+
+
     this.setPiece = (algDest, piece) => {
       var pos = Utils.algToCoords(algDest);
 
