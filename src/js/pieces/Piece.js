@@ -25,7 +25,13 @@ module.exports = class Piece {
     };
 
     this.moveTo = (dest) => {
+      if (board.checkLegalMove(this.pos, dest)) {
+        board.move(this.pos, dest, this);
 
+        return true;
+      }
+
+      return false;
     };
   }
 };
