@@ -20,7 +20,7 @@ var Helpers = {
     for (i = 0; i < positions.length; i++) {
       file = positions[i][0];
       rank = positions[i][1];
-      obj = board.files[file][rank];
+      obj = board.ranks[file][rank];
 
       if (!this.checkPiece(obj, piece, color)) {
           return false;
@@ -40,7 +40,7 @@ var Helpers = {
     var piece;
 
     for (i = 0; i < 8; i++) {
-      piece = board.files[file][i];
+      piece = board.ranks[file][i];
 
       if (!this.checkPiece(piece, 'Pawn', color)) {
         return false;

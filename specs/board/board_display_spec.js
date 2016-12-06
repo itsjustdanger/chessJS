@@ -5,8 +5,8 @@ var Board = require('../../src/js/Board.js');
 
 test('Kings are given correct positions', (t) => {
   var board = new Board(800, 800);
-  var whiteKing = board.files[0][4];
-  var blackKing = board.files[7][4];
+  var whiteKing = board.ranks[0][4];
+  var blackKing = board.ranks[7][4];
   var squareWidth = board.width / 8;
   var squareHeight = board.height / 8;
 
