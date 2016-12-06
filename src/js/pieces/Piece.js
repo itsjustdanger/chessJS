@@ -26,10 +26,24 @@ module.exports = class Piece {
 
     this.moves = () => {};
 
+
+    /**
+     * Returns true if a friendly piece is on the given square.
+     */
     this.occupiedByFriendly = (alg) => {
       var piece = this.board.getPiece(alg);
-      
+
       return (piece && (piece.color === this.color));
-    }
+    };
+
+
+    /**
+     * Retruns true if an enemy piece is on the given square.
+     */
+    this.occupiedByEnemy = (alg) => {
+      var piece = this.board.getPiece(alg);
+
+      return (piece && (piece.color !== this.color));
+    };
   }
 };

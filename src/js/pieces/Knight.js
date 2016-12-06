@@ -20,7 +20,7 @@ module.exports = class Knight extends Piece {
           rank: (this.pos.rank + offset[0]),
           file: (this.pos.file + offset[1]),
         });
-        
+
         if (dest && !this.occupiedByFriendly(dest)) {
           moveList.push(dest);
         }
