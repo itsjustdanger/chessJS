@@ -24,21 +24,43 @@ var Utils = module.exports = {
   algToCoords: (alg) => {
     var rank, file;
 
+    if (!Utils.inBounds(alg)) {
+      return false;
+    }
+
     alg = alg.split('');
 
     rank = parseInt(alg[1]) - 1;
     file = FILE_MAP[alg[0]];
 
+    console.log(file)
+
+    if (!file) {
+      return false;
+    }
+
     return { file: file, rank: rank };
   },
 
   coordsToAlg: (coords) => {
+    if (!Utils.inBounds(coords)) {
+      return false;
+    }
+
     return FILE_MAP[coords.file] + (coords.rank + 1);
   },
 
   inBounds: (loc) => {
-    var pos = (typeof loc === 'string') ? Utils.algToCoords(loc) : loc;
+    var alg, rank, file;
 
-    return (pos.rank < 8 && pos.file < 8 && pos.rank >= 0 && pos.file >= 0);
+    if (typeof loc === 'string') {
+      alg = loc.split('')
+      rank = parseInt(alg[1] -1);
+      file = alg[0];
+
+      return (alg.length === 2 && rank < 8 && rank >= 0 && file <= 'h' && file >= 'a');
+    }
+
+    return (loc.rank < 8 && loc.file < 8 && loc.rank >= 0 && loc.file >= 0);
   },
 };
