@@ -35,7 +35,7 @@ var Helpers = {
    * Make sure that pawns fill up ranks 2 and 6, and that they are the correct color.
    */
   checkPawns: function (board, color) {
-    var file = (color === 'white') ? 1 : 5;
+    var file = (color === 'white') ? 1 : 6;
     var i;
     var piece;
 

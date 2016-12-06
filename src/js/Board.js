@@ -80,7 +80,7 @@ module.exports = class Board {
 
       for (i = 0; i < NUM_FILES; i++) {
         this.ranks[1][i] = new Pawn({rank: 1, file: i}, 'white', this);
-        this.ranks[5][i] = new Pawn({rank: 5, file: i}, 'black', this);
+        this.ranks[6][i] = new Pawn({rank: 6, file: i}, 'black', this);
       }
     };
 
