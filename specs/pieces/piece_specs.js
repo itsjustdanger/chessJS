@@ -6,5 +6,5 @@ test('Get array of legal moves for selected Pawn', (t) => {
   var pawn = board.getPiece('e2');
 
   t.plan(1);
-  t.equal(pawn.moves(), ['e3', 'e4']);
+  t.deepEqual(pawn.moves(), ['e3', 'e4']);
 });

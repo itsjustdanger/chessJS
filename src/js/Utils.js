@@ -33,6 +33,6 @@ var Utils = module.exports = {
   },
 
   coordsToAlg: (coords) => {
-    return FILE_MAP[coords.file] + coords.rank;
+    return FILE_MAP[coords.file] + (coords.rank + 1);
   }
 };
