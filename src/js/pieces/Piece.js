@@ -24,5 +24,6 @@ module.exports = class Piece {
       return this.board.height - ((this.pos.rank + 1) * (this.board.height / 8));
     };
 
+    this.moves = () => {};
   }
 };

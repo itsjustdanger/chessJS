@@ -5,18 +5,9 @@ var Knight = require('./pieces/Knight');
 var Bishop = require('./pieces/Bishop');
 var Queen = require('./pieces/Queen');
 var King = require('./pieces/King');
+var Utils = require('./Utils');
 
 var NUM_FILES = 8;
-var FILE_MAP = {
-  'a': 0,
-  'b': 1,
-  'c': 2,
-  'd': 3,
-  'e': 4,
-  'f': 5,
-  'g': 6,
-  'h': 7,
-};
 
 
 module.exports = class Board {
@@ -62,27 +53,27 @@ module.exports = class Board {
 
 
     this.getPiece = (alg) => {
-      var pos = this.algToCoord(alg);
+      var pos = Utils.algToCoords(alg);
       var piece = this.ranks[pos.rank][pos.file];
       return piece;
     };
 
     this.setPiece = (algDest, piece) => {
-      var pos = this.algToCoord(algDest);
+      var pos = Utils.algToCoords(algDest);
 
       this.ranks[pos.rank][pos.file] = piece;
     };
 
-    this.algToCoord = (alg) => {
-      var rank, file;
-
-      alg = alg.split('');
-
-      rank = parseInt(alg[1]) - 1;
-      file = FILE_MAP[alg[0]];
-
-      return { file: file, rank: rank };
-    };
+    // this.algToCoord = (alg) => {
+    //   var rank, file;
+    //
+    //   alg = alg.split('');
+    //
+    //   rank = parseInt(alg[1]) - 1;
+    //   file = FILE_MAP[alg[0]];
+    //
+    //   return { file: file, rank: rank };
+    // };
 
     this.setPawns = () => {
       var i;
