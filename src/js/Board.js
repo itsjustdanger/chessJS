@@ -9,9 +9,11 @@ var King = require('./pieces/King');
 
 
 module.exports = class Board {
-  constructor() {
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
 
-    this.ranks =  [
+    this.files =  [
       [null,null,null,null,null,null,null,null],
       [null,null,null,null,null,null,null,null],
       [null,null,null,null,null,null,null,null],
@@ -26,40 +28,40 @@ module.exports = class Board {
       var i;
 
       for (i = 0; i < NUM_FILES; i++) {
-        this.ranks[1][i] = new Pawn({rank: 1, file: i}, 'white');
-        this.ranks[5][i] = new Pawn({rank: 5, file: i}, 'black');
+        this.files[1][i] = new Pawn({rank: 1, file: i}, 'white', this);
+        this.files[5][i] = new Pawn({rank: 5, file: i}, 'black', this);
       }
     }
 
     this.setRooks = () => {
-      this.ranks[0][0] = new Rook({rank: 0, file: 0}, 'white');
-      this.ranks[0][7] = new Rook({rank: 0, file: 7}, 'white');
-      this.ranks[7][0] = new Rook({rank: 7, file: 0}, 'black');
-      this.ranks[7][7] = new Rook({rank: 7, file: 7}, 'black');
+      this.files[0][0] = new Rook({rank: 0, file: 0}, 'white', this);
+      this.files[0][7] = new Rook({rank: 0, file: 7}, 'white', this);
+      this.files[7][0] = new Rook({rank: 7, file: 0}, 'black', this);
+      this.files[7][7] = new Rook({rank: 7, file: 7}, 'black', this);
     };
 
     this.setKnights = () => {
-      this.ranks[0][1] = new Knight({rank: 0, file: 1}, 'white');
-      this.ranks[0][6] = new Knight({rank: 0, file: 6}, 'white');
-      this.ranks[7][1] = new Knight({rank: 7, file: 1}, 'black');
-      this.ranks[7][6] = new Knight({rank: 7, file: 6}, 'black');
+      this.files[0][1] = new Knight({rank: 0, file: 1}, 'white', this);
+      this.files[0][6] = new Knight({rank: 0, file: 6}, 'white', this);
+      this.files[7][1] = new Knight({rank: 7, file: 1}, 'black', this);
+      this.files[7][6] = new Knight({rank: 7, file: 6}, 'black', this);
     };
 
     this.setBishops = () => {
-      this.ranks[0][2] = new Bishop({rank: 0, file: 2}, 'white');
-      this.ranks[0][5] = new Bishop({rank: 0, file: 5}, 'white');
-      this.ranks[7][2] = new Bishop({rank: 7, file: 2}, 'black');
-      this.ranks[7][5] = new Bishop({rank: 7, file: 5}, 'black');
+      this.files[0][2] = new Bishop({file: 0, rank: 2}, 'white', this);
+      this.files[0][5] = new Bishop({file: 0, rank: 5}, 'white', this);
+      this.files[7][2] = new Bishop({file: 7, rank: 2}, 'black', this);
+      this.files[7][5] = new Bishop({file: 7, rank: 5}, 'black', this);
     };
 
     this.setQueens = () => {
-      this.ranks[0][3] = new Queen({rank: 0, file: 3}, 'white');
-      this.ranks[7][3] = new Queen({rank: 7, file: 3}, 'black');
+      this.files[0][3] = new Queen({file: 0, rank: 3}, 'white', this);
+      this.files[7][3] = new Queen({file: 7, rank: 3}, 'black', this);
     };
 
     this.setKings = () => {
-      this.ranks[0][4] = new King({rank: 0, file: 4}, 'white');
-      this.ranks[7][4] = new King({rank: 7, file: 4}, 'black');
+      this.files[0][4] = new King({file: 0, rank: 4}, 'white', this);
+      this.files[7][4] = new King({file: 7, rank: 4}, 'black', this);
     }
 
     this.setPieces = () => {

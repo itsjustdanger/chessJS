@@ -18,9 +18,9 @@ var Helpers = {
     var rank, file, obj, i;
 
     for (i = 0; i < positions.length; i++) {
-      rank = positions[i][0];
-      file = positions[i][1];
-      obj = board.ranks[rank][file];
+      file = positions[i][0];
+      rank = positions[i][1];
+      obj = board.files[file][rank];
 
       if (!this.checkPiece(obj, piece, color)) {
           return false;
@@ -35,12 +35,12 @@ var Helpers = {
    * Make sure that pawns fill up ranks 2 and 6, and that they are the correct color.
    */
   checkPawns: function (board, color) {
-    var rank = (color === 'white') ? 1 : 5;
+    var file = (color === 'white') ? 1 : 5;
     var i;
     var piece;
 
     for (i = 0; i < 8; i++) {
-      piece = board.ranks[rank][i];
+      piece = board.files[file][i];
 
       if (!this.checkPiece(piece, 'Pawn', color)) {
         return false;

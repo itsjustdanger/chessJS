@@ -6,8 +6,8 @@ var Board = require('../../src/js/Board.js');
 
 test('Board populates 8x8 grid on creation', (t) => {
   var board = new Board();
-  var ranks = board.ranks.length;
-  var files = board.ranks[0].length;
+  var files = board.files.length;
+  var ranks = board.files[0].length;
 
   t.plan(2);
 
