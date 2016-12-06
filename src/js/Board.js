@@ -62,6 +62,10 @@ module.exports = class Board {
       var pos = Utils.algToCoords(algDest);
 
       this.ranks[pos.rank][pos.file] = piece;
+
+      if (piece) {
+        piece.pos = pos;
+      }
     };
 
     // this.algToCoord = (alg) => {
