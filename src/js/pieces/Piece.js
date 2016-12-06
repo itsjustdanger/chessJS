@@ -28,7 +28,7 @@ module.exports = class Piece {
 
     this.occupiedByFriendly = (alg) => {
       var piece = this.board.getPiece(alg);
-      console.log(alg + ": " + (piece && (piece.color === this.color)));
+      
       return (piece && (piece.color === this.color));
     }
   }
