@@ -33,8 +33,6 @@ var Utils = module.exports = {
     rank = parseInt(alg[1]) - 1;
     file = FILE_MAP[alg[0]];
 
-    console.log(file)
-
     if (!file) {
       return false;
     }
