@@ -11,7 +11,11 @@ module.exports = class Pawn extends Piece {
     this.directionMod = (this.color === 'white') ? 1 : -1;
     this.moveDirections = []
 
-    this.captureMoves = (dest) => {
+
+    /**
+     * Checks forward diagonals for Pawn captures and returns them.
+     */
+    this._captureMoves = (dest) => {
 
       var moveList = [];
       var rank = this.pos.rank + (1 * this.directionMod);
@@ -29,6 +33,10 @@ module.exports = class Pawn extends Piece {
       return moveList;
     };
 
+    /**
+     * Returns a list of possible legal moves for the piece. Calls captureMoves to
+     * check for special pawn diagonal captures.
+     */
     this.moves = () => {
 
       var newRank, newFile;
@@ -38,7 +46,7 @@ module.exports = class Pawn extends Piece {
 
       if ((color === 'white' && this.pos.rank < boundaryRank) ||
           (color === 'black' && this.pos.rank > boundaryRank)) {
-            
+
         rank = this.pos.rank + (1 * this.directionMod)
         moveList.push(Utils.coordsToAlg({rank: rank, file: this.pos.file}));
       }
@@ -48,7 +56,7 @@ module.exports = class Pawn extends Piece {
         moveList.push(Utils.coordsToAlg({rank: rank, file: this.pos.file}));
       }
 
-      moveList = moveList.concat(this.captureMoves());
+      moveList = moveList.concat(this._captureMoves());
 
       return moveList;
     };
