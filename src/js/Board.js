@@ -35,16 +35,31 @@ module.exports = class Board {
       [null,null,null,null,null,null,null,null]
     ];
 
-    this.checkLegalMove = (posOrigin, algDest) => {
-      var posDest = this.algToCoord(algDest);
+    this.checkLegalMove = (algOrigin, algDest) => {
+      var piece = this.getPiece(algOrigin);
+      if (piece) {
+        return true;
+      }
 
-      return true;
+      return false;
     };
 
-    this.move = (posOrigin, algDest, piece) => {
-      this.setPiece(algDest, piece);
-      this.ranks[posOrigin.rank][posOrigin.file] = null;
+
+    this.move = (algOrigin, algDest) => {
+      var piece;
+
+      if (this.checkLegalMove(algOrigin, algDest)) {
+        piece = this.getPiece(algOrigin);
+
+        this.setPiece(algDest, piece);
+        this.setPiece(algOrigin, null);
+
+        return true;
+      }
+
+      return false;
     };
+
 
     this.getPiece = (alg) => {
       var pos = this.algToCoord(alg);

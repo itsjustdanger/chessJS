@@ -24,14 +24,5 @@ module.exports = class Piece {
       return this.board.height - ((this.pos.rank + 1) * (this.board.height / 8));
     };
 
-    this.moveTo = (dest) => {
-      if (board.checkLegalMove(this.pos, dest)) {
-        board.move(this.pos, dest, this);
-
-        return true;
-      }
-
-      return false;
-    };
   }
 };

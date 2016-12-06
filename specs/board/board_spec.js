@@ -4,7 +4,7 @@ var Board = require('../../src/js/Board.js');
 test('Allow legal pawn move using alg notation (e3)', (t) => {
   var board = new Board();
   var pawn = board.getPiece('e2');
-  var move = pawn.moveTo('e3');
+  var move = board.move('e2', 'e3');
 
   t.plan(3);
 
