@@ -16,7 +16,7 @@ module.exports = class Knight extends Piece {
 
       for (i = 0; i < KNIGHT_OFFSETS.length; i++) {
         offset = KNIGHT_OFFSETS[i];
-        dest = Utils.coordsToAlg({
+        dest = Utils.toAlg({
           rank: (this.pos.rank + offset[0]),
           file: (this.pos.file + offset[1]),
         });

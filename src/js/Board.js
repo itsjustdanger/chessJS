@@ -58,7 +58,7 @@ module.exports = class Board {
 
 
     this.getPiece = (alg) => {
-      var pos = Utils.algToCoords(alg);
+      var pos = Utils.toCoords(alg);
       var piece;
 
       if (Utils.inBounds(pos)) {
@@ -76,7 +76,7 @@ module.exports = class Board {
 
 
     this.setPiece = (algDest, piece) => {
-      var pos = Utils.algToCoords(algDest);
+      var pos = Utils.toCoords(algDest);
 
       this.ranks[pos.rank][pos.file] = piece;
 

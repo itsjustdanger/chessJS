@@ -21,7 +21,7 @@ var FILE_MAP = {
 
 
 var Utils = module.exports = {
-  algToCoords: (alg) => {
+  toCoords: (alg) => {
     var rank, file;
 
     if (!Utils.inBounds(alg)) {
@@ -40,7 +40,7 @@ var Utils = module.exports = {
     return { file: file, rank: rank };
   },
 
-  coordsToAlg: (coords) => {
+  toAlg: (coords) => {
     if (!Utils.inBounds(coords)) {
       return false;
     }

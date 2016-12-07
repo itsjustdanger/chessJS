@@ -19,8 +19,8 @@ module.exports = class Pawn extends Piece {
 
       var moveList = [];
       var rank = this.pos.rank + (1 * this.directionMod);
-      var leftCapture = Utils.coordsToAlg({rank: rank, file: this.pos.file - 1});
-      var rightCapture = Utils.coordsToAlg({rank: rank, file: this.pos.file + 1});
+      var leftCapture = Utils.toAlg({rank: rank, file: this.pos.file - 1});
+      var rightCapture = Utils.toAlg({rank: rank, file: this.pos.file + 1});
 
       if (this.board.getPiece(leftCapture)) {
         moveList.push(leftCapture);
@@ -47,7 +47,7 @@ module.exports = class Pawn extends Piece {
           (color === 'black' && this.pos.rank > boundaryRank)) {
 
         rank = this.pos.rank + (1 * this.directionMod)
-        dest = Utils.coordsToAlg({rank: rank, file: this.pos.file});
+        dest = Utils.toAlg({rank: rank, file: this.pos.file});
 
         if (board.isEmpty(dest)) {
           moveList.push(dest);
@@ -56,7 +56,7 @@ module.exports = class Pawn extends Piece {
 
       if (!this.hasMoved) {
         rank = this.pos.rank + (2 * this.directionMod)
-        dest = Utils.coordsToAlg({rank: rank, file: this.pos.file})
+        dest = Utils.toAlg({rank: rank, file: this.pos.file})
 
         if (board.isEmpty(dest)) {
           moveList.push(dest);

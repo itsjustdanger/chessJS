@@ -28,7 +28,7 @@ module.exports = class SlidingPiece extends Piece {
           file: (this.pos.file + offset[1]),
         };
 
-        algDest = Utils.coordsToAlg(dest);
+        algDest = Utils.toAlg(dest);
 
         while (Utils.inBounds(dest) && !this.occupiedByFriendly(algDest)) {
           moveList.push(algDest);
@@ -39,7 +39,7 @@ module.exports = class SlidingPiece extends Piece {
 
           dest.rank += offset[0];
           dest.file += offset[1];
-          algDest = Utils.coordsToAlg(dest);
+          algDest = Utils.toAlg(dest);
         }
       }
 
