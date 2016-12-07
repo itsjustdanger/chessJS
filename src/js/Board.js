@@ -39,20 +39,20 @@ module.exports = class Board {
     this.move = (algOrigin, algDest) => {
       var piece;
 
-      if (this.checkLegalMove(algOrigin, algDest)) {
-        piece = this.getPiece(algOrigin);
-
-        this.setPiece(algDest, piece);
-        this.setPiece(algOrigin, null);
-
-        if (!piece.hasMoved) {
-          piece.hasMoved = true;
-        }
-
-        return true;
+      if (!this.checkLegalMove(algOrigin, algDest)) {
+        return false;
       }
 
-      return false;
+      piece = this.getPiece(algOrigin);
+
+      this.setPiece(algDest, piece);
+      this.setPiece(algOrigin, null);
+
+      if (!piece.hasMoved) {
+        piece.hasMoved = true;
+      }
+
+      return true;
     };
 
 
@@ -84,16 +84,6 @@ module.exports = class Board {
       }
     };
 
-    // this.algToCoord = (alg) => {
-    //   var rank, file;
-    //
-    //   alg = alg.split('');
-    //
-    //   rank = parseInt(alg[1]) - 1;
-    //   file = FILE_MAP[alg[0]];
-    //
-    //   return { file: file, rank: rank };
-    // };
 
     this.setPawns = () => {
       var i;
