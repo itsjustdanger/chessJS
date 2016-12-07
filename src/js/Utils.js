@@ -33,7 +33,7 @@ var Utils = module.exports = {
     rank = parseInt(alg[1]) - 1;
     file = FILE_MAP[alg[0]];
 
-    if (!file) {
+    if (typeof file === 'undefined') {
       return false;
     }
 
