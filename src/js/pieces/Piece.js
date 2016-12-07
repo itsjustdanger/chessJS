@@ -10,6 +10,7 @@ module.exports = class Piece {
     /**
      * Returns the piece's x coordinate based on its current rank and the
      * board's dimensions.
+     * @returns {Number} display value for the x coord.
      */
     this.displayX = () => {
       return this.pos.file * (this.board.width / 8);
@@ -19,16 +20,18 @@ module.exports = class Piece {
     /**
      * Returns the piece's y coordinate based on its current rank and the
      * board's dimensions.
+     * @returns {Number} display value for the y coord.
      */
     this.displayY = () => {
-      return this.board.height - ((this.pos.rank + 1) * (this.board.height / 8));
+      var squareHeight = this.board.height / 8;
+      return this.board.height - ((this.pos.rank + 1) * squareHeight);
     };
-
-    this.moves = () => {};
 
 
     /**
      * Returns true if a friendly piece is on the given square.
+     * @param {String} alg - Algorithmic coordinate
+     * @returns {Boolean} Returns whether a friendly piece is on a given square.
      */
     this.occupiedByFriendly = (alg) => {
       var piece = this.board.getPiece(alg);
@@ -39,6 +42,8 @@ module.exports = class Piece {
 
     /**
      * Retruns true if an enemy piece is on the given square.
+     * @param {String} alg - Algorithmic coordinate
+     * @returns {Boolean} Returns whether an enemy piece is on a given square.
      */
     this.occupiedByEnemy = (alg) => {
       var piece = this.board.getPiece(alg);

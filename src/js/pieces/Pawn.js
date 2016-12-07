@@ -13,14 +13,15 @@ module.exports = class Pawn extends Piece {
 
 
     /**
-     * Checks forward diagonals for Pawn captures and returns them.
+     * Find diagonal capture moves.
+     * @return {Array} Array of move algs.
      */
-    this._captureMoves = (dest) => {
+    this._captureMoves = () => {
 
       var moveList = [];
       var rank = this.pos.rank + (1 * this.directionMod);
-      var leftCapture = Utils.toAlg({rank: rank, file: this.pos.file - 1});
-      var rightCapture = Utils.toAlg({rank: rank, file: this.pos.file + 1});
+      var leftCapture = Utils.toAlg({rank, file: this.pos.file - 1});
+      var rightCapture = Utils.toAlg({rank, file: this.pos.file + 1});
 
       if (this.board.getPiece(leftCapture)) {
         moveList.push(leftCapture);
@@ -34,20 +35,21 @@ module.exports = class Pawn extends Piece {
     };
 
     /**
-     * Returns a list of possible legal moves for the piece. Calls captureMoves to
-     * check for special pawn diagonal captures.
+     * Returns a list of possible legal moves for the piece. Calls captureMoves
+     * to check for special pawn diagonal captures.
+     * @returns {Array} Array of possible legal move algs.
      */
     this.moves = () => {
 
-      var newFile, rank, dest;
+      var dest, rank;
       var boundaryRank = (this.color === 'white') ? 7 : 0;
       var moveList = [];
 
-      if ((color === 'white' && this.pos.rank < boundaryRank) ||
-          (color === 'black' && this.pos.rank > boundaryRank)) {
+      if ((this.color === 'white' && this.pos.rank < boundaryRank) ||
+          (this.color === 'black' && this.pos.rank > boundaryRank)) {
 
         rank = this.pos.rank + (1 * this.directionMod)
-        dest = Utils.toAlg({rank: rank, file: this.pos.file});
+        dest = Utils.toAlg({rank, file: this.pos.file});
 
         if (board.isEmpty(dest)) {
           moveList.push(dest);
@@ -56,7 +58,7 @@ module.exports = class Pawn extends Piece {
 
       if (!this.hasMoved) {
         rank = this.pos.rank + (2 * this.directionMod)
-        dest = Utils.toAlg({rank: rank, file: this.pos.file})
+        dest = Utils.toAlg({rank, file: this.pos.file})
 
         if (board.isEmpty(dest)) {
           moveList.push(dest);

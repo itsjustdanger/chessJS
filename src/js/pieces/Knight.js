@@ -1,7 +1,6 @@
 "use strict";
 
 var SteppingPiece = require('./SteppingPiece');
-var Utils = require('../Utils');
 
 var KNIGHT_OFFSETS = [[-1, -2], [1, -2], [-1, 2], [1, 2],
                       [-2, -1], [2, -1], [-2, 1], [2, 1]];

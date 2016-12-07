@@ -16,16 +16,17 @@ module.exports = class SlidingPiece extends Piece {
     /**
      * Finds all sliding moves based on provided offsets. Stops after adding a
      * capture square or before adding a square occupied by a friendly piece.
+     * @returns {Array} Array of possible legal moves as algs.
      */
     this.moves = () => {
-      var dest, algDest, offset, i;
+      var algDest, dest, i, offset;
       var moveList = [];
 
       for (i = 0; i < this.movementOffsets.length; i++) {
         offset = this.movementOffsets[i];
         dest = {
           rank: (this.pos.rank + offset[0]),
-          file: (this.pos.file + offset[1]),
+          file: (this.pos.file + offset[1])
         };
 
         algDest = Utils.toAlg(dest);

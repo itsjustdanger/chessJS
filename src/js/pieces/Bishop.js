@@ -1,7 +1,6 @@
 "use strict";
 
 var SlidingPiece = require('./SlidingPiece');
-var Utils = require('../Utils');
 
 var BISHOP_OFFSETS = [[-1, -1], [1, -1], [-1, 1], [1, 1]];
 
