@@ -36,7 +36,7 @@ A basic implementation of chess in JavaScript (with some ES6 goodies).
   - #### Queen
     - ~~Standard Movement~~
   - #### King
-    - Standard Movement
+    - ~~Standard Movement~~
     - Castling
 
 ### Display

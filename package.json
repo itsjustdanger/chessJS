@@ -2,13 +2,19 @@
   "name": "chess-js",
   "version": "1.0.0",
   "description": "js implementation of simple canvas chess",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itsjustdanger/chessJS"
+  },
   "main": "index.js",
   "scripts": {
-    "test": "tape specs/*/*.js | tap-spec"
+    "test": "tape specs/*/*.js | tap-spec",
+    "lint": "eslint src/js/*/*.js"
   },
   "author": "Dan Reich",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^3.11.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.3"
   }
