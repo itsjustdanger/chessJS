@@ -45,7 +45,7 @@ module.exports = class Pawn extends Piece {
     moveList = moveList.concat(this._captureMoves());
 
     return moveList;
-  };
+  }
 
 
   /**
@@ -67,5 +67,5 @@ module.exports = class Pawn extends Piece {
     }
 
     return moveList;
-  };
+  }
 };
