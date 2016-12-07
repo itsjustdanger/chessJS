@@ -1,13 +1,7 @@
 "use strict";
 
-var Pawn = require('./pieces/Pawn');
-var Rook = require('./pieces/Rook');
-var Knight = require('./pieces/Knight');
-var Bishop = require('./pieces/Bishop');
-var Queen = require('./pieces/Queen');
-var King = require('./pieces/King');
+var Pieces = require('./pieces/Pieces');
 var Utils = require('./Utils');
-
 var NUM_FILES = 8;
 
 
@@ -27,114 +21,107 @@ module.exports = class Board {
       [null,null,null,null,null,null,null,null]
     ];
 
-    this.checkLegalMove = (algOrigin, algDest) => {
-      var piece = this.getPiece(algOrigin);
-      if (piece) {
-        return true;
-      }
+    this.setupBoard();
+  }
 
+  /**
+   * Inserts the piece at the origin into the square at the destination. Does
+   * NOT check for legality, validity, obstruction, etc. Changes hasMoved on
+   * piece to true if false.
+   * @params {string} origin - the origin square, in algorithmic notation
+   * @params {string} dest - the destination square, in algorithmic notation
+   * @returns {boolean} Returns true when move has completed.
+   */
+  move(origin, dest) {
+    var piece = this.getPiece(origin);
+
+    if (!piece) {
       return false;
-    };
-
-
-    this.move = (algOrigin, algDest) => {
-      var piece;
-
-      if (!this.checkLegalMove(algOrigin, algDest)) {
-        return false;
-      }
-
-      piece = this.getPiece(algOrigin);
-
-      this.setPiece(algDest, piece);
-      this.setPiece(algOrigin, null);
-
-      if (!piece.hasMoved) {
-        piece.hasMoved = true;
-      }
-
-      return true;
-    };
-
-
-    this.getPiece = (alg) => {
-      var pos = Utils.toCoords(alg);
-      var piece;
-
-      if (Utils.inBounds(pos)) {
-        piece = this.ranks[pos.rank][pos.file];
-        return piece;
-      }
-
-      return false;
-    };
-
-
-    this.isEmpty = (alg) => {
-      return (!this.getPiece(alg));
-    };
-
-
-    this.setPiece = (algDest, piece) => {
-      var pos = Utils.toCoords(algDest);
-
-      this.ranks[pos.rank][pos.file] = piece;
-
-      if (piece) {
-        piece.pos = pos;
-      }
-    };
-
-
-    this.setPawns = () => {
-      var i;
-
-      for (i = 0; i < NUM_FILES; i++) {
-        this.ranks[1][i] = new Pawn({rank: 1, file: i}, 'white', this);
-        this.ranks[6][i] = new Pawn({rank: 6, file: i}, 'black', this);
-      }
-    };
-
-    this.setRooks = () => {
-      this.ranks[0][0] = new Rook({rank: 0, file: 0}, 'white', this);
-      this.ranks[0][7] = new Rook({rank: 0, file: 7}, 'white', this);
-      this.ranks[7][0] = new Rook({rank: 7, file: 0}, 'black', this);
-      this.ranks[7][7] = new Rook({rank: 7, file: 7}, 'black', this);
-    };
-
-    this.setKnights = () => {
-      this.ranks[0][1] = new Knight({rank: 0, file: 1}, 'white', this);
-      this.ranks[0][6] = new Knight({rank: 0, file: 6}, 'white', this);
-      this.ranks[7][1] = new Knight({rank: 7, file: 1}, 'black', this);
-      this.ranks[7][6] = new Knight({rank: 7, file: 6}, 'black', this);
-    };
-
-    this.setBishops = () => {
-      this.ranks[0][2] = new Bishop({rank: 0, file: 2}, 'white', this);
-      this.ranks[0][5] = new Bishop({rank: 0, file: 5}, 'white', this);
-      this.ranks[7][2] = new Bishop({rank: 7, file: 2}, 'black', this);
-      this.ranks[7][5] = new Bishop({rank: 7, file: 5}, 'black', this);
-    };
-
-    this.setQueens = () => {
-      this.ranks[0][3] = new Queen({rank: 0, file: 3}, 'white', this);
-      this.ranks[7][3] = new Queen({rank: 7, file: 3}, 'black', this);
-    };
-
-    this.setKings = () => {
-      this.ranks[0][4] = new King({rank: 0, file: 4}, 'white', this);
-      this.ranks[7][4] = new King({rank: 7, file: 4}, 'black', this);
     }
 
-    this.setPieces = () => {
-      this.setPawns();
-      this.setRooks();
-      this.setKnights();
-      this.setBishops();
-      this.setQueens();
-      this.setKings();
+    this.setPiece(dest, piece);
+    this.setPiece(origin, null);
+
+    if (!piece.hasMoved) {
+      piece.hasMoved = true;
     }
 
-    this.setPieces();
+    return true;
+  }
+
+  /**
+   * Gets the piece at the given location.
+   * @params {string} alg - The location in algorithmic notation.
+   * @returns {Piece|null|Boolean} The piece, a null square, or false.
+   */
+  getPiece(alg) {
+    var pos = Utils.toCoords(alg);
+    var piece;
+
+    if (Utils.inBounds(pos)) {
+      piece = this.ranks[pos.rank][pos.file];
+      return piece;
+    }
+
+    return false;
+  }
+
+  /**
+   * Checks whether a given location is empty.
+   * @params {string} alg - The location in algorithmic notation.
+   * @returns {Boolean} Whether a the given square is empty.
+   */
+  isEmpty(alg) {
+    return (!this.getPiece(alg));
+  };
+
+  /**
+   * Places a piece in the destination square. Ignores all restrictions.
+   * @params {string} dest - The destination to place the piece in alg. not.
+   * @params {Piece} piece - The piece to place.
+   */
+  setPiece(dest, piece) {
+    var pos = Utils.toCoords(dest);
+
+    this.ranks[pos.rank][pos.file] = piece;
+
+    if (piece) {
+      piece.pos = pos;
+    }
+  }
+
+  setupBoard() {
+    this.setupPieces('white');
+    this.setupPieces('black');
+  }
+
+  setupPieces(color) {
+    var file;
+    var rank = (color === 'white') ? 0 : 7;
+    var pawnRank = (color === 'white') ? 1 : 6;
+
+    // Setup pawns
+    for (file = 0; file < 8; file++) {
+      this.ranks[pawnRank][file] = new Pieces.Pawn({ rank: pawnRank, file },
+                                                  color, this);
+    }
+
+    // Setup rooks
+    this.ranks[rank][0] = new Pieces.Rook({rank, file: 0}, color, this);
+    this.ranks[rank][7] = new Pieces.Rook({rank, file: 7}, color, this);
+
+    // Setup knights
+    this.ranks[rank][1] = new Pieces.Knight({rank, file: 1}, color, this);
+    this.ranks[rank][6] = new Pieces.Knight({rank, file: 6}, color, this);
+
+    // Setup bishops
+    this.ranks[rank][2] = new Pieces.Bishop({rank, file: 2}, color, this);
+    this.ranks[rank][5] = new Pieces.Bishop({rank, file: 5}, color, this);
+
+    // Setup queen
+    this.ranks[rank][3] = new Pieces.Queen({rank, file: 3}, color, this);
+
+    // Setup king
+    this.ranks[rank][4] = new Pieces.King({rank, file: 4}, color, this);
   }
 };

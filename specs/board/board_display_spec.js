@@ -1,10 +1,11 @@
 "use strict";
 
 var test = require('tape');
-var Board = require('../../src/js/Board.js');
+var Game = require('../../src/js/Game');
 
 test('Kings are given correct positions', (t) => {
-  var board = new Board(800, 800);
+  var game = new Game(800, 800);
+  var board = game.board;
   var whiteKing = board.ranks[0][4];
   var blackKing = board.ranks[7][4];
   var squareWidth = board.width / 8;

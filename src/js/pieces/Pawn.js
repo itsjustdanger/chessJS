@@ -7,7 +7,6 @@ module.exports = class Pawn extends Piece {
   constructor (pos, color, board) {
     super(pos, color, board);
 
-    this.hasMoved = false;
     this.directionMod = (this.color === 'white') ? 1 : -1;
   }
 

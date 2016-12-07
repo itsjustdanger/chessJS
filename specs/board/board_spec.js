@@ -1,8 +1,9 @@
 var test = require('tape');
-var Board = require('../../src/js/Board.js');
+var Game = require('../../src/js/Game');
 
 test('Allow legal pawn move using alg notation (e3)', (t) => {
-  var board = new Board();
+  var game = new Game();
+  var board = game.board;
   var pawn = board.getPiece('e2');
   var move = board.move('e2', 'e3');
 
@@ -14,7 +15,8 @@ test('Allow legal pawn move using alg notation (e3)', (t) => {
 });
 
 test('Disallow movement when no piece is on the requested square', (t) => {
-  var board = new Board();
+  var game = new Game();
+  var board = game.board;
   var move = board.move('e4', 'e5');
 
   t.plan(3);

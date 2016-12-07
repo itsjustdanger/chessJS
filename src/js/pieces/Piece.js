@@ -4,9 +4,10 @@ var Utils = require('../Utils');
 
 module.exports = class Piece {
   constructor(pos, color, board) {
-    this.pos = pos;
-    this.color = color;
     this.board = board;
+    this.color = color;
+    this.pos = pos;
+    this.hasMoved = false;
   }
 
 
