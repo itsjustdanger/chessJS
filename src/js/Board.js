@@ -1,4 +1,5 @@
 "use strict";
+
 var Pawn = require('./pieces/Pawn');
 var Rook = require('./pieces/Rook');
 var Knight = require('./pieces/Knight');
