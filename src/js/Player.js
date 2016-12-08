@@ -3,8 +3,16 @@
 var Pieces = require('./pieces/Pieces');
 
 module.exports = class Player {
-  constructor(color, board) {
+  constructor(color, game) {
     this.color = color;
-    this.board = board;
+    this.game = game;
   }
+
+  move(origin, dest) {
+    if (this.game.move(this, origin, dest)) {
+      return true;
+    }
+
+    return false;
+  };
 };

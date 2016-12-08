@@ -11,3 +11,11 @@ test('Game newGame initializes a new game.', (t) => {
   t.equal(game.board.constructor.name, 'Board', 'set up game board');
   t.equal(game.currentPlayer, game.playerWhite, 'white to move');
 });
+
+test('Game move only allows moves included within a pieces move list', (t) => {
+  var game = new Game();
+
+  t.plan(2);
+  t.ok(game.move(game.playerWhite, 'e2', 'e3'), 'legal move returns true');
+  t.ok(!game.move(game.playerWhite, 'e2', 'e5'), 'illegal move returns false');
+});
