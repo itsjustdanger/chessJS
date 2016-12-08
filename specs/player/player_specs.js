@@ -23,3 +23,15 @@ test('Player can move owned piece', (t) => {
   t.equal(board.getPiece('e2'), null, 'moved piece origin is empty');
   t.equal(board.getPiece('e4'), piece, 'moved piece dest contains piece');
 });
+
+test('Player cannot move unowned piece', (t) => {
+  var game = new Game();
+  var board = game.board;
+  var piece = board.getPiece('e2');
+  var move = game.playerBlack.move('e2', 'e4');
+
+  t.plan(3);
+  t.ok(!move, 'illegal move returns false');
+  t.equal(board.getPiece('e2'), piece, 'unmoved piece org contains piece');
+  t.equal(board.getPiece('e4'), null, 'unmoved piece dest is empty');
+});
