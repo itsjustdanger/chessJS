@@ -6,9 +6,10 @@ var NUM_FILES = 8;
 
 
 module.exports = class Board {
-  constructor(width, height) {
+  constructor(width, height, game) {
     this.width = width;
     this.height = height;
+    this.game = game;
 
     this.ranks =  [
       [null,null,null,null,null,null,null,null],

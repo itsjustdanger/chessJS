@@ -5,9 +5,9 @@ var Player = require('./Player');
 
 module.exports = class Game {
   constructor(boardWidth, boardHeight) {
-    this.board = new Board(boardWidth, boardHeight);
     this.playerWhite = new Player('white', this);
     this.playerBlack = new Player('black', this);
+    this.board = new Board(boardWidth, boardHeight, this);
     this.currentPlayer = this.playerWhite;
   }
 
