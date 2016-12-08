@@ -51,7 +51,7 @@ test('Game determines whether player is in check', (t) => {
   var game = new Game();
   var board = game.board;
 
-  board.move('d2', 'e7');
+  board.move('d1', 'e7');
 
   t.plan(2);
   t.ok(game.playerInCheck(game.playerBlack), 'black in check');

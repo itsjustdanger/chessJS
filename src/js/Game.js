@@ -2,6 +2,7 @@
 
 var Board = require('./Board');
 var Player = require('./Player');
+var Utils = require('./Utils');
 
 module.exports = class Game {
   constructor(boardWidth, boardHeight) {
@@ -49,6 +50,23 @@ module.exports = class Game {
   }
 
   playerInCheck(player) {
+    var king = player.king;
+    var opponent
+    var checked = false;
 
+    if (this.playerWhite.color === player.color) {
+      opponent = this.playerBlack;
+    } else {
+      opponent = this.playerWhite;
+    }
+
+    opponent.pieces.forEach((piece) => {
+
+      if (piece.moves().includes(Utils.toAlg(king.pos))) {
+        checked = true;
+      }
+    })
+
+    return checked;
   }
 };
