@@ -21,8 +21,8 @@ module.exports = class SlidingPiece extends Piece {
 
     this.movementOffsets.forEach((offset) => {
       var dest = {
-        rank: (this.pos.rank + offset[0]),
-        file: (this.pos.file + offset[1])
+        file: (this.pos.file + offset[1]),
+        rank: (this.pos.rank + offset[0])
       };
 
       while (Utils.inBounds(dest) && !this.occupiedByFriendly(dest)) {

@@ -23,8 +23,8 @@ module.exports = class SteppingPiece extends Piece {
 
     this.movementOffsets.forEach((offset) => {
       var dest = {
-        rank: (this.pos.rank + offset[0]),
-        file: (this.pos.file + offset[1])
+        file: (this.pos.file + offset[1]),
+        rank: (this.pos.rank + offset[0])
       };
 
       if (Utils.inBounds(dest) && !this.occupiedByFriendly(dest)) {
