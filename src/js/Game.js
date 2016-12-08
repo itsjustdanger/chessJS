@@ -9,6 +9,23 @@ module.exports = class Game {
     this.playerBlack = new Player('black', this);
     this.board = new Board(boardWidth, boardHeight, this);
     this.currentPlayer = this.playerWhite;
+
+    this.associatePieces(this.playerWhite);
+    this.associatePieces(this.playerBlack);
+  }
+
+  associatePieces(player) {
+    this.board.ranks.forEach((rank) => {
+      rank.forEach((piece) => {
+        if (piece && piece.color === player.color) {
+          player.pieces.push(piece);
+
+          if (piece.constructor.name === 'King') {
+            player.king = piece;
+          }
+        }
+      });
+    });
   }
 
   move(player, origin, dest) {
@@ -29,5 +46,9 @@ module.exports = class Game {
     var moves = piece.moves();
 
     return moves.includes(dest);
+  }
+
+  playerInCheck(player) {
+
   }
 };

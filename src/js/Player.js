@@ -6,6 +6,8 @@ module.exports = class Player {
   constructor(color, game) {
     this.color = color;
     this.game = game;
+    this.pieces = [];
+    this.king = null;
   }
 
   move(origin, dest) {
