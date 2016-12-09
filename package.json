@@ -9,11 +9,15 @@
   "main": "index.js",
   "scripts": {
     "test": "tape specs/*/*.js | tap-spec",
-    "lint": "eslint src/js/*/*.js"
+    "lint": "eslint src/js/*/*.js",
+    "build": "babel src -d lib"
   },
   "author": "Dan Reich",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-latest": "^6.16.0",
+    "browserify": "^13.1.1",
     "eslint": "^3.11.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.3"

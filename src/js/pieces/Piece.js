@@ -51,4 +51,15 @@ module.exports = class Piece {
 
     return (piece && (piece.color !== this.color));
   }
+
+  render() {
+    var styles =
+      `transform: translate(${this.displayX()}px, ${this.displayY()}px)`;
+
+    if (typeof this.domElement === 'undefined') {
+      this.domElement = document.createElement('piece');
+      this.domElement.className = `${this.constructor.name} ${this.color}`;
+    }
+    this.domElement.styles = styles;
+  }
 };
